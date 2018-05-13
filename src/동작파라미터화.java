@@ -40,6 +40,10 @@ class Apple{
         this.color = color;
     }
 
+    public int getWeight(){
+        return weight;
+    }
+
     @Override
     public String toString(){
         return weight + " " + color;
