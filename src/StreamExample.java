@@ -1,10 +1,12 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 public class StreamExample {
     public static void main(String[] args) {
         distinctTest();
         limitTest();
         skipTest();
+        flatMapTest();
     }
 
 
@@ -32,5 +34,26 @@ public class StreamExample {
                 .filter(d -> d.length() > 5)
                 .skip(1) // 앞에 두개를 생략한다.
                 .forEach(System.out::println);
+    }
+
+    public static void flatMapTest(){
+        //flatMap : 스트림의 각 값을 다른 스트림으로 만든 다음에 모든 스트림을 하나의 스트림으로 연결하는 기능을 수행한다.
+
+        //요구사항
+        // 1,2,3,4,5 -> 1,4,9,16,25
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5);
+        numbers.stream()
+            .map(i->i*i)
+            .collect(Collectors.toList());
+
+
+        //요구사항
+        // (1,2,3) (3,4) -> (1,3)(2,3)(3,3)(1,4)(2,4)(3,4)
+        List<Integer> numbers1 = Arrays.asList(1,2,3);
+        List<Integer> numbers2 = Arrays.asList(3,4);
+        numbers1.stream()
+            .flatMap(i -> number2.stream.map(j->new int[]{i, j}))
+            .collect(Collectors.toList());
+
     }
 }
